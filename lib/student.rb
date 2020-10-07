@@ -106,16 +106,15 @@ class Student
   end
     
     
-  def self.first_X_students_in_grade_10
+  def self.first_X_students_in_grade_10(x)
     sql = <<-SQL
       SELECT * 
       FROM students
       WHERE students.grade = 10
-      ORDER BY ? ASC
     SQL
     DB[:conn].execute(sql).map do |row|
       self.new_from_db(row)
-    end
+    end.first(x)
     
   end
   
@@ -132,8 +131,14 @@ class Student
   end
   
   
-  def self.all_students_in_grade_X
-    
-    
+  def self.all_students_in_grade_X(x)
+      sql = <<-SQL
+      SELECT * 
+      FROM students
+      WHERE grade = x
+    SQL
+    DB[:conn].execute(sql).map do |row|
+      self.new_from_db(row)
+    end
   end
 end
