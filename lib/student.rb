@@ -16,7 +16,6 @@ class Student
       SELECT *
       FROM students
     SQL
-    
     DB[:conn].execute(sql)
     # retrieve all the rows from the "Students" database
     # remember each row should be a new instance of the Student class
@@ -45,7 +44,6 @@ class Student
       INSERT INTO students (name, grade) 
       VALUES (?, ?)
     SQL
-
     DB[:conn].execute(sql, self.name, self.grade)
   end
   
@@ -58,7 +56,6 @@ class Student
       grade TEXT
     )
     SQL
-
     DB[:conn].execute(sql)
   end
   
@@ -99,7 +96,6 @@ class Student
       SELECT *
       FROM students
     SQL
-    
     DB[:conn].execute(sql).map do |row|
       self.new_from_db(row)
     end
@@ -115,7 +111,6 @@ class Student
     DB[:conn].execute(sql).map do |row|
       self.new_from_db(row)
     end.first(x)
-    
   end
   
   
