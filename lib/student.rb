@@ -133,6 +133,7 @@ class Student
       WHERE students.grade = ?
     SQL
     DB[:conn].execute(sql).map do |row|
+      binding
       self.new_from_db(row)
     end
   end
